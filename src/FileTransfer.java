@@ -1,4 +1,5 @@
 import models.*;
+import views.*;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -13,7 +14,9 @@ public class FileTransfer {
      */
     public static void main(String[] args) throws IOException {
         TransferableFile tf = new TransferableFile(args[0]);
+//        tf.printHierarchy(0);
 
-        tf.printHierarchy(0);
+        DefaultView dv = new DefaultView(tf);
+        dv.setVisible(true);
     }
 }
