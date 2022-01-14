@@ -7,15 +7,15 @@ import java.awt.*;
 
 public class DefaultView extends JFrame {
     private JPanel panel1;
-    private JSpinner spinner1;
-    private JSlider slider1;
     private JTree tree1;
+    private JTextField pleaseSelectAFileTextField;
+    private JPanel panel2;
+    private JScrollPane scrollPane;
     private TransferableFileNode tft;
     private TransferableFile tf;
 
     public DefaultView(TransferableFile tf) {
         this.tf = tf;
-        panel1.setLayout(new GridLayout(2, 2));
         setContentPane(panel1);
         pack();
         setTitle("bruh");
