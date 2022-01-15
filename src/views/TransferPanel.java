@@ -3,9 +3,8 @@ package views;
 import models.TransferableFile;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class DefaultView extends JFrame {
+public class TransferPanel extends JPanel {
     private JPanel panel1;
     private JTree tree1;
     private JTextField pleaseSelectAFileTextField;
@@ -14,12 +13,10 @@ public class DefaultView extends JFrame {
     private TransferableFileNode tft;
     private TransferableFile tf;
 
-    public DefaultView(TransferableFile tf) {
+    public TransferPanel(TransferableFile tf) {
+        super();
         this.tf = tf;
-        setContentPane(panel1);
-        pack();
-        setTitle("bruh");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(panel1);
     }
 
     private void createUIComponents() {
