@@ -18,4 +18,8 @@ public class TransferableFileNode extends DefaultMutableTreeNode {
         for (TransferableFile aux : tf.getChildrenFiles())
             this.add(new TransferableFileNode(aux));
     }
+
+    public TransferableFile getDisplayedFile() {
+        return displayedFile;
+    }
 }
