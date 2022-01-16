@@ -55,22 +55,13 @@ public class BaseWrapper extends JFrame {
                 try {
                     server = new ServerSocket(ServerController.PORT_NUMBER);
                     while (true) {
-                        new ServerController(server.accept());
+                        new ServerController(server.accept(), defaultView);
                     }
                 } catch (Exception exception) {
                     System.out.println("kinda bad ngl.");
                 } finally {
                     try {
                         if (server != null) {
-                            try {
-                                Image icon = ImageIO.read(new File("resources/check.png"));
-                                icon = icon.getScaledInstance(30, 30, 0);
-                                JOptionPane.showMessageDialog(defaultView, "A new file has been received!",
-                                        "Transfer succeeded", JOptionPane.PLAIN_MESSAGE, new ImageIcon(icon));
-                            } catch (Exception exception) {
-                                JOptionPane.showMessageDialog(defaultView, "A new file has been received!",
-                                        "Transfer succeeded", JOptionPane.PLAIN_MESSAGE);
-                            }
                             server.close();
                         }
                     } catch (IOException ex) {

@@ -2,18 +2,24 @@ package controllers;
 
 import models.TransferableFile;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.Vector;
 
 public class ServerController extends Thread {
     public static final int PORT_NUMBER = 8081;
 
     protected Socket socket;
+    Component container;
 
-    public ServerController(Socket socket) {
+    public ServerController(Socket socket, Component container) {
         this.socket = socket;
+        this.container = container;
         System.out.println("New client connected from " + socket.getInetAddress().getHostAddress());
         start();
     }
@@ -43,6 +49,16 @@ public class ServerController extends Thread {
                 recievedBytes[i] = byteVector.elementAt(i);
 
             TransferableFile.deserielize(recievedBytes, 0, ftConfigurationController.getDownloadPath());
+
+            try {
+                Image icon = ImageIO.read(new File("resources/check.png"));
+                icon = icon.getScaledInstance(30, 30, 0);
+                JOptionPane.showMessageDialog(container, "A new file has been received!",
+                        "Transfer succeeded", JOptionPane.PLAIN_MESSAGE, new ImageIcon(icon));
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(container, "A new file has been received!",
+                        "Transfer succeeded", JOptionPane.PLAIN_MESSAGE);
+            }
 
             System.out.println("Connection to " + socket.getInetAddress().getHostAddress() + " has been terminated.");
 
